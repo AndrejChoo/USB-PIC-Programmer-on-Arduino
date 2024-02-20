@@ -2,6 +2,7 @@
 Open USB Programmer project for PIC MCU based on Arduino (ATMEGA328)
 
 Программатор для микроконтроллеров PIC, основанный на atmega328 (arduino nano/uno) с минимальной внешней обвязкой. 
+
 ![screenshot](https://github.com/AndrejChoo/USB-PIC-Programmer-on-Arduino/blob/main/software/soft.png)
 
 # 06.02.2023
