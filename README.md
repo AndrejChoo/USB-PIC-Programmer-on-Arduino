@@ -5,6 +5,8 @@ Open USB Programmer project for PIC MCU based on Arduino (ATMEGA328)
 
 ![screenshot](https://github.com/AndrejChoo/USB-PIC-Programmer-on-Arduino/blob/main/software/soft.png)
 
+Обратная связь приветствуется. Если у Вас есть модели pic, не поддерживаемые на данный момент, пишите мне: andrejchukov@yandex.ru. Буду пробовать добавлять, а Вы - тестировать.
+
 # 06.02.2023
 На данный момент поддерживаются следующие модели PIC:
 
