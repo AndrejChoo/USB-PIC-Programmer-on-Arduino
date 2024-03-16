@@ -1,7 +1,7 @@
 /*
  * pic.c
  *
- *  Created on: 25 нояб. 2022 г.
+ *  Created on: 25 Г­Г®ГїГЎ. 2022 ГЈ.
  *      Author: Andrej
  */
 
@@ -463,7 +463,7 @@ uint8_t p18fx5xx_readComm(uint8_t comm, uint8_t data)
 }
 
 
-//Установить счётчик комманд на адрес
+//Г“Г±ГІГ Г­Г®ГўГЁГІГј Г±Г·ВёГІГ·ГЁГЄ ГЄГ®Г¬Г¬Г Г­Г¤ Г­Г  Г Г¤Г°ГҐГ±
 void p18fx5xx_setDP(uint8_t h_add, uint8_t m_add, uint8_t l_add)
 {
 	p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, (0x0E00 | h_add));
@@ -1229,7 +1229,7 @@ void p16f676_erase(void)
 void p16f84a_erase(void)
 {
 	progMode();
-	p16f7x_writeComm(P16F7X_LOAD_CONF, 0x3FF0, 0);
+	p16f7x_writeComm(P16F7X_LOAD_CONF, 0x3FFF, 0);
 	for(int i = 0; i < 7; i++) p16f7x_writeComm(P16F7X_INC_ADD, 0x0000, 1);
 	p16f7x_writeComm(0x01, 0x0000, 1);
 	p16f7x_writeComm(0x07, 0x0000, 1);
@@ -1239,7 +1239,7 @@ void p16f84a_erase(void)
 	p16f7x_writeComm(0x07, 0x0000, 1);
 	reset();
 	_delay_ms(50);
-
+	/*
 	progMode();
 	p16f7x_writeComm(P16F628A_LOAD_CODE, 0x3FFF, 0);
 	p16f7x_writeComm(P16F628A_ERASE_CODE, 0x0000, 1);
@@ -1253,6 +1253,7 @@ void p16f84a_erase(void)
 	p16f7x_writeComm(0x18, 0x0000, 1);
 	_delay_ms(50);
 	reset();
+	*/
 }
 
 void p16f87x_erase(void)
