@@ -46,7 +46,6 @@ void send_arr(uint8_t marker, uint8_t *buff, uint16_t count, uint16_t offset)
 
 void deassemble_frame(void)
 {
-	PINS_ACTIVE
 
 	switch(exchange[2])
 	{
@@ -512,7 +511,6 @@ void deassemble_frame(void)
 			break;
 		}
 	}
-	PINS_IDDLE
 }
 
 

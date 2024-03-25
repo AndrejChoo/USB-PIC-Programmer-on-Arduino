@@ -14,6 +14,9 @@ void gpio_init(void)
 	PGM_DDR |= (1 << PGM_PIN);
 	VDD_DDR |= (1 << VDD_PIN);
 	VPP_DDR |= (1 << VPP_PIN);
+	PULL_DDR |= (1 << PULL_PIN);
+
+	VDD_HIGH
 }
 
 void pgd_read(void)

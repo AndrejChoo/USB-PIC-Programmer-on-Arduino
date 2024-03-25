@@ -1,7 +1,7 @@
 /*
  * pic.c
  *
- *  Created on: 25 Г­Г®ГїГЎ. 2022 ГЈ.
+ *  Created on: 25 нояб. 2022 г.
  *      Author: Andrej
  */
 
@@ -38,28 +38,39 @@ void delay_us(uint16_t del)
 
 void p16f7x_progMode(void)
 {
+	VDD_LOW
+	_delay_ms(1);
+
+	PINS_ACTIVE
+	PULL_LOW
 	pgd_write();
-	  PGM_LOW
-	  PGC_LOW
-	  PGD_LOW
-	  _delay_us(50);
-	  VDD_HIGH
-	  _delay_us(50);
-	  VPP_HIGH
-	  _delay_ms(1);
+
+	PGM_LOW
+	PGC_LOW
+	PGD_LOW
+	_delay_us(50);
+	VDD_HIGH
+	_delay_us(50);
+	VPP_HIGH
+	_delay_ms(1);
 }
 
 void p16f628A_progMode(void)
 {
+	VDD_LOW
+	_delay_ms(1);
+
+	PINS_ACTIVE
+	PULL_LOW
 	pgd_write();
-	  PGM_LOW
-	  PGC_LOW
-	  PGD_LOW
-	  _delay_us(50);
-	  VPP_HIGH
-	  _delay_us(50);
-	  VDD_HIGH
-	  _delay_ms(2);
+	PGM_LOW
+	PGC_LOW
+	PGD_LOW
+	_delay_us(50);
+	VPP_HIGH
+	_delay_us(50);
+	VDD_HIGH
+	_delay_ms(2);
 }
 
 void progMode(void)
@@ -83,6 +94,10 @@ void reset(void)
 		case 0x0D: {p18fxxjxx_reset(); break;}
 		default: {p16f7x_reset(); break;}
 	}
+	PINS_IDDLE
+	_delay_ms(100);
+	PULL_HIGH
+	VDD_HIGH
 }
 
 void p18fxxjxx_progMode(void)
@@ -463,7 +478,7 @@ uint8_t p18fx5xx_readComm(uint8_t comm, uint8_t data)
 }
 
 
-//Г“Г±ГІГ Г­Г®ГўГЁГІГј Г±Г·ВёГІГ·ГЁГЄ ГЄГ®Г¬Г¬Г Г­Г¤ Г­Г  Г Г¤Г°ГҐГ±
+//Установить счётчик комманд на адрес
 void p18fx5xx_setDP(uint8_t h_add, uint8_t m_add, uint8_t l_add)
 {
 	p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, (0x0E00 | h_add));
@@ -1239,6 +1254,7 @@ void p16f84a_erase(void)
 	p16f7x_writeComm(0x07, 0x0000, 1);
 	reset();
 	_delay_ms(50);
+
 	/*
 	progMode();
 	p16f7x_writeComm(P16F628A_LOAD_CODE, 0x3FFF, 0);
