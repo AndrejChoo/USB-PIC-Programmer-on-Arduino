@@ -37,6 +37,9 @@
 	#define VPP_PIN		6
 	#define VPP_PORT	PORTD
 	#define VPP_DDR		DDRD
+	#define PULL_PIN	4
+	#define PULL_PORT	PORTC
+	#define PULL_DDR	DDRC
 #endif
 
 #ifdef SHIELD
@@ -56,6 +59,9 @@
 	#define VPP_PIN		4
 	#define VPP_PORT	PORTD
 	#define VPP_DDR		DDRD
+	#define PULL_PIN	2
+	#define PULL_PORT	PORTB
+	#define PULL_DDR	DDRB
 #endif
 
 #define PGD_HIGH	PGD_PORT |= (1 << PGD_PIN);
@@ -63,11 +69,13 @@
 #define PGM_HIGH	PGM_PORT |= (1 << PGM_PIN);
 #define VDD_HIGH	VDD_PORT |= (1 << VDD_PIN);
 #define VPP_HIGH	VPP_PORT |= (1 << VPP_PIN);
+#define PULL_HIGH	PULL_PORT |= (1 << PULL_PIN);
 #define PGD_LOW		PGD_PORT &= ~(1 << PGD_PIN);
 #define PGC_LOW		PGC_PORT &= ~(1 << PGC_PIN);
 #define PGM_LOW		PGM_PORT &= ~(1 << PGM_PIN);
 #define VDD_LOW		VDD_PORT &= ~(1 << VDD_PIN);
 #define VPP_LOW		VPP_PORT &= ~(1 << VPP_PIN);
+#define PULL_LOW	PULL_PORT &= ~(1 << PULL_PIN);
 
 #define PINS_IDDLE		{PGD_DDR &= ~(1 << PGD_PIN); PGC_DDR &= ~(1 << PGC_PIN);}
 #define PINS_ACTIVE		{PGD_DDR |= (1 << PGD_PIN); PGC_DDR |= (1 << PGC_PIN);}
