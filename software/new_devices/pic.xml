@@ -1369,7 +1369,7 @@
 	<f_psize>1</f_psize>
 	<ee_size>256</ee_size>
 	<f_start>0</f_start>
-	<ee_start>01E000</ee_start>
+	<ee_start>00F000</ee_start>
 	<ee_type>2</ee_type>
 	<conf1>008007</conf1>
 	<conf2>008008</conf2>
@@ -1392,7 +1392,7 @@
 	<f_psize>1</f_psize>
 	<ee_size>256</ee_size>
 	<f_start>0</f_start>
-	<ee_start>01E000</ee_start>
+	<ee_start>00F000</ee_start>
 	<ee_type>2</ee_type>
 	<conf1>008007</conf1>
 	<conf2>008008</conf2>
@@ -1415,7 +1415,7 @@
 	<f_psize>1</f_psize>
 	<ee_size>256</ee_size>
 	<f_start>0</f_start>
-	<ee_start>01E000</ee_start>
+	<ee_start>00F000</ee_start>
 	<ee_type>2</ee_type>
 	<conf1>008007</conf1>
 	<conf2>008008</conf2>
@@ -1438,7 +1438,7 @@
 	<f_psize>1</f_psize>
 	<ee_size>256</ee_size>
 	<f_start>0</f_start>
-	<ee_start>01E000</ee_start>
+	<ee_start>00F000</ee_start>
 	<ee_type>2</ee_type>
 	<conf1>008007</conf1>
 	<conf2>008008</conf2>
@@ -1461,7 +1461,7 @@
 	<f_psize>1</f_psize>
 	<ee_size>256</ee_size>
 	<f_start>0</f_start>
-	<ee_start>01E000</ee_start>
+	<ee_start>00F000</ee_start>
 	<ee_type>2</ee_type>
 	<conf1>008007</conf1>
 	<conf2>008008</conf2>
@@ -1484,7 +1484,7 @@
 	<f_psize>1</f_psize>
 	<ee_size>256</ee_size>
 	<f_start>0</f_start>
-	<ee_start>01E000</ee_start>
+	<ee_start>00F000</ee_start>
 	<ee_type>2</ee_type>
 	<conf1>008007</conf1>
 	<conf2>008008</conf2>
@@ -1507,7 +1507,7 @@
 	<f_psize>1</f_psize>
 	<ee_size>256</ee_size>
 	<f_start>0</f_start>
-	<ee_start>01E000</ee_start>
+	<ee_start>00F000</ee_start>
 	<ee_type>2</ee_type>
 	<conf1>008007</conf1>
 	<conf2>008008</conf2>
@@ -1530,7 +1530,7 @@
 	<f_psize>1</f_psize>
 	<ee_size>256</ee_size>
 	<f_start>0</f_start>
-	<ee_start>01E000</ee_start>
+	<ee_start>00F000</ee_start>
 	<ee_type>2</ee_type>
 	<conf1>008007</conf1>
 	<conf2>008008</conf2>
@@ -1660,7 +1660,7 @@
 	<delay>15</delay>
 	<word>0FFF</word>
   </name>
-
+  
  <name model="PIC16F627">
 	<id>0x07E0</id>
 	<type>4</type>
@@ -1683,7 +1683,7 @@
 	<delay>4</delay>
 	<word>3FFF</word>
   </name>
-	
+
  <name model="PIC16F627A">
 	<id>0x1040</id>
 	<type>2</type>
@@ -1706,8 +1706,8 @@
 	<delay>4</delay>
 	<word>3FFF</word>	
   </name>
-
-<name model="PIC16F628">
+  
+ <name model="PIC16F628">
 	<id>0x0720</id>
 	<type>4</type>
 	<f_size>4096</f_size>
