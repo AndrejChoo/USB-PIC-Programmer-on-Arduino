@@ -5,6 +5,33 @@ Open USB Programmer project for PIC MCU based on Arduino (ATMEGA328)
 
 ![screenshot](https://github.com/AndrejChoo/USB-PIC-Programmer-on-Arduino/blob/main/software/soft.png)
 
+Есть возможность добавления новых моделей самостоятельно, для этого необходимо редактировать файл "pic.xml". Он состоит из однотипных структур типа:
+
+```
+  <name model="PIC16F1938">
+	<id>0x23A0</id>
+	<type>7</type>
+	<f_size>32768</f_size>
+	<f_psize>1</f_psize>
+	<ee_size>256</ee_size>
+	<f_start>0</f_start>
+	<ee_start>00F000</ee_start>
+	<ee_type>2</ee_type>
+	<conf1>008007</conf1>
+	<conf2>008008</conf2>
+	<conf3>none</conf3>
+	<conf4>none</conf4>
+	<conf5>none</conf5>
+	<conf6>none</conf6>
+	<conf7>none</conf7>
+	<oscal1>008009</oscal1>
+	<oscal2>00800A</oscal2>
+	<oscal3>none</oscal3>
+	<delay>3</delay>
+	<word>3FFF</word>
+  </name>
+```
+
 Обратная связь приветствуется. Если у Вас есть модели pic, не поддерживаемые на данный момент, пишите мне: andrejchukov@yandex.ru. Буду пробовать добавлять, а Вы - тестировать.
 
 # 06.02.2023
