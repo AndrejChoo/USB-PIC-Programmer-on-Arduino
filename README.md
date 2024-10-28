@@ -96,7 +96,7 @@ PIC10F32x, PIC16F150x, PIC16F88x
 PIC16F170X, PIC16F18XX, PIC16F183XX, PIC16F184XX, PIC18FXXK22, PIC18FXXQ10 (у последней серии некоррекно читается или записывается EEPROM, проверить мне не чем).
 
 # 23.02.2024
-Переписал софт на Qt. Теперь программа стала кроссплатформенной. Работа проверена не Windows x64, Linux Fedora 39 x64, Ubuntu 22.04 aarch64. Внешний вид программы и функционал остались прежними.
+Переписал софт на Qt. Теперь программа стала кроссплатформенной. Работа проверена на Windows x64, Linux Fedora 39 x64, Ubuntu 22.04 aarch64, FreeBSD 14.1 x64. Внешний вид программы и функционал остались прежними.
 
 ![screenshot1](https://github.com/AndrejChoo/USB-PIC-Programmer-on-Arduino/blob/main/software/soft_Qt.png)
 
