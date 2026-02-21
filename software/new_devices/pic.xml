@@ -276,6 +276,29 @@
 	<delay>3</delay>
 	<word>0FFF</word>
   </name>
+  
+ <name model="PIC12F615">
+	<id>0x10C0</id>
+	<type>21</type>
+	<f_size>2048</f_size>
+	<f_psize>1</f_psize>
+	<ee_size>0</ee_size>
+	<f_start>0</f_start>
+	<ee_start>0</ee_start>
+	<ee_type>2</ee_type>
+	<conf1>002007</conf1>
+	<conf2>none</conf2>
+	<conf3>none</conf3>
+	<conf4>none</conf4>
+	<conf5>none</conf5>
+	<conf6>none</conf6>
+	<conf7>none</conf7>
+	<oscal1>002008</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>3</delay>
+	<word>3FFF</word>
+  </name>
 
  <name model="PIC12F629/675">
 	<id>0x0F80</id>
@@ -785,6 +808,29 @@
 	<word>3FFF</word>
   </name>
 
+
+<name model="PIC16F18044">
+	<id>0x30F7</id>
+	<type>18</type>
+	<f_size>8192</f_size>
+	<f_psize>64</f_psize>
+	<ee_size>128</ee_size>
+	<f_start>0</f_start>
+	<ee_start>00F000</ee_start>
+	<ee_type>2</ee_type>
+	<conf1>008007</conf1>
+	<conf2>008008</conf2>
+	<conf3>008009</conf3>
+	<conf4>00800A</conf4>
+	<conf5>00800B</conf5>
+	<conf6>none</conf6>
+	<conf7>none</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>4</delay>
+	<word>3FFF</word>
+  </name>
 
   
  <name model="PIC16F1823">
@@ -3568,6 +3614,29 @@
 	<oscal2>none</oscal2>
 	<oscal3>none</oscal3>
 	<delay>80</delay>
+	<word>FFFF</word>
+  </name>
+  
+  <name model="PIC18F66K22">
+	<id>0x52C0</id>
+	<type>22</type>
+	<f_size>65536</f_size>
+	<f_psize>64</f_psize>
+	<ee_size>1024</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
 	<word>FFFF</word>
   </name>
   
