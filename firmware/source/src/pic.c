@@ -1,7 +1,7 @@
 /*
  * pic.c
  *
- *  Created on: 25 нояб. 2022 г.
+ *  Created on: 25 пїЅпїЅпїЅпїЅ. 2022 пїЅ.
  *      Author: Andrej
  */
 
@@ -81,6 +81,7 @@ void progMode(void)
 		case 0x06: {p16f628A_progMode(); break;}
 #ifdef PIC18FXXK80
 		case 0x05: {p16f7x_progMode(); p18fxxk80_password(0x4D43, 0x4850); break;}
+		case 0x16: {p16f7x_progMode(); p18fxxk80_password(0x4D43, 0x4850); break;}
 #endif
 		case 0x0D: {p18fxxjxx_progMode(); break;}
 		default: {p16f7x_progMode(); break;}
@@ -478,7 +479,7 @@ uint8_t p18fx5xx_readComm(uint8_t comm, uint8_t data)
 }
 
 
-//Установить счётчик комманд на адрес
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 void p18fx5xx_setDP(uint8_t h_add, uint8_t m_add, uint8_t l_add)
 {
 	p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, (0x0E00 | h_add));
@@ -685,10 +686,11 @@ void p16f7x_writeCfg(void)
 	p16f7x_writeComm(P16F7X_LOAD_CONF, 0x0000, 0);
 	for(int i = 0; i < 7; i++) p16f7x_writeComm(P16F7X_INC_ADD, 0x0000, 1);
 	p16f7x_writeComm(P16F7X_LOAD_DATA, (exchange[4] | (exchange[5] <<8)), 0);
-	if(device == 0x14) p16f7x_writeComm(0x18, 0x0000, 1);
+	if(device == 0x14 || device == 0x15) p16f7x_writeComm(0x18, 0x0000, 1);
 	else p16f7x_writeComm(P16F7X_BEGIN_PROG, 0x0000, 1);
 	_delay_ms(5);
-	p16f7x_writeComm(P16F7X_END_PROG, 0x0000, 1);
+	if(device == 0x15) p16f7x_writeComm(0x0A, 0x0000, 1);
+	else p16f7x_writeComm(P16F7X_END_PROG, 0x0000, 1);
 	_delay_ms(5);
 	reset();
 }
@@ -772,7 +774,7 @@ void p16f676_writeCfg(void)
 	for(int i = 0; i < 7; i++) p16f7x_writeComm(P16F7X_INC_ADD, 0x0000, 1);
 	p16f7x_writeComm(P16F7X_LOAD_DATA, cfg, 0);
 	p16f7x_writeComm(P16F7X_BEGIN_PROG, 0x0000, 1);
-	_delay_ms(5);
+	_delay_ms(15);
 	p16f7x_writeComm(0x0A, 0x0000, 1);
 	reset();
 }
@@ -1073,26 +1075,30 @@ void p18fxxk80_read(void)
 
 	if(ee_size > 0)
 	{
+		progMode();
+
 		for(int i = 0; i < ee_size; i+= 64)
 		{
 			for(int k = 0; k < 64; k++)
 			{
-				progMode();
 				uint16_t c_add = k + i;
 
 				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x9E7F);
 				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x9C7F);
 				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, (0x0E00 | (c_add & 0xFF)));
-				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E74);
+				if(device == 0x05) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E74);
+				if(device == 0x16) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E62);
 				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, (0x0E00 | (c_add >> 8)));
-				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E75);
+				if(device == 0x05) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E75);
+				if(device == 0x16) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E63);
 				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x807F);
-				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x5073);
+				if(device == 0x05) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x5073);
+				if(device == 0x16) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x5061);
 				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6EF5);
 				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x0000);
 				main_buff[k + 3] = p18fx5xx_readComm(P18FX5XX_SHIFT_TABL, 0x00);
 				p18fx5xx_readComm(P18FX5XX_SHIFT_TABL, 0x00);
-				reset();
+				//reset();
 			}
 			main_buff[0] = 0xFE;
 			main_buff[1] = 0x40;
@@ -1102,6 +1108,7 @@ void p18fxxk80_read(void)
 			while(!read_bsy);
 			read_bsy = 0;
 		}
+		reset();
 	}
 }
 #endif
@@ -1111,6 +1118,11 @@ void p16f7x_erase(void)
 	progMode();
 
 	if(device == 0x0E) p16f183xx_setAdd(0x1D, 0x00, 0xE8, 0x00);
+	if(device == 0x15)
+	{
+		p16f7x_writeComm(P16F7X_LOAD_CONF, 0x0000, 0);
+		_delay_ms(50);
+	}
 
 	p16f7x_writeComm(P16F7X_ERASE, 0x0000, 1);
 	_delay_ms(200);
@@ -1234,7 +1246,7 @@ void p16f676_erase(void)
 	progMode();
 	_delay_ms(50);
 	p16f7x_writeComm(P16F628A_ERASE_DATA, 0x0000, 1);
-	_delay_ms(200);
+	_delay_ms(400);
 	reset();
 
 	p16f676_restoreOsc();
@@ -1324,11 +1336,14 @@ void p18fx5xx_erase(void)
 #ifdef PIC18FXXK80
 void p18fxxk80_erase(void)
 {
-	uint16_t er_04[] = {0x0404, 0x0404, 0x0404, 0x0404, 0x0505, 0x0202, 0x0404};
-	uint16_t er_05[] = {0x0101, 0x0202, 0x0404, 0x0808, 0x0000, 0x0000, 0x0000};
+	uint16_t er_04[] = {0x0404, 0x0404, 0x0404, 0x0404, 0x0505, 0x0202, 0x0404, 0x0404, 0x0404, 0x0404, 0x0404};
+	uint16_t er_05[] = {0x0101, 0x0202, 0x0404, 0x0808, 0x0000, 0x0000, 0x0000, 0x1010, 0x2020, 0x4040, 0x8080};
+	uint8_t count;
 
+	if(device == 0x05) count = 7;
+	if(device == 0x16) count = 11;
 
-	for(int g = 0; g < 7; g++)
+	for(int g = 0; g < count; g++)
 	{
 		progMode();
 		p18fx5xx_setDP(0x3C, 0x00, 0x04);
@@ -1363,10 +1378,11 @@ void p16f7x_progCode(void)
 		else
 		{
 			p16f7x_writeComm(P16F7X_LOAD_DATA, (exchange[i + 4] | (exchange[i + 5] <<8)), 0);
-			if(device == 0x14) p16f7x_writeComm(0x18, 0x0000, 1);
+			if(device == 0x14 || device == 0x15) p16f7x_writeComm(0x18, 0x0000, 1);
 			else p16f7x_writeComm(P16F7X_BEGIN_PROG, 0x0000, 1);
 			delay_ms(wr_delay);
-			p16f7x_writeComm(P16F7X_END_PROG, 0x0000, 1);
+			if(device == 0x15) p16f7x_writeComm(0x0A, 0x0000, 1);
+			else p16f7x_writeComm(P16F7X_END_PROG, 0x0000, 1);
 			_delay_us(100);
 			p16f7x_writeComm(P16F7X_INC_ADD, 0x0000, 1);
 		}
@@ -1623,7 +1639,7 @@ void p16f628a_progData(void)
 			{
 				p16f7x_writeComm(P16F628A_LOAD_DATA, exchange[i + 4], 0);
 				p16f7x_writeComm(P16F7X_BEGIN_PROG, 0x0000, 1);
-				delay_ms(wr_delay + 2);
+				delay_ms(wr_delay + 5);
 				p16f7x_writeComm(P16F7X_INC_ADD, 0x0000, 1);
 			}
 
@@ -1761,11 +1777,14 @@ void p18fxxk80_progData(void)
 		a_h = (main_counter + i) >> 8;
 		a_l = (main_counter + i) & 0xFF;
 		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, (0x0E00 | a_l));
-		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E74);
+		if(device == 0x05) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E74);
+		if(device == 0x16) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E62);
 		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, (0x0E00 | a_h));
-		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E75);
+		if(device == 0x05) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E75);
+		if(device == 0x16) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E63);
 		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, (0x0E00 | exchange[i + 4]));
-		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E73);
+		if(device == 0x05) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E73);
+		if(device == 0x16) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6E61);
 		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x847F);
 		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x827F);
 		do
@@ -1885,15 +1904,25 @@ void p12f5x_writeOscall(void)
 #ifdef PIC16F676
 void p16f676_writeOscall(void)
 {
-	oscal1 = exchange[4] | (exchange[5] << 8);
+	p16f676_storeOsc();
 
 	progMode();
-	for(int i = 0; i < 0x3FF; i++) p16f7x_writeComm(P16F7X_INC_ADD, 0x0000, 1);
-	p16f7x_writeComm(P16F7X_LOAD_DATA, oscal1, 0);
-	p16f7x_writeComm(P16F7X_BEGIN_PROG, 0x0000, 1);
-	_delay_ms(5);
-	p16f7x_writeComm(0x0A, 0x0000, 1);
+	p16f7x_writeComm(P16F7X_LOAD_CONF, 0x0000, 0);
+	_delay_ms(50);
+	p16f7x_writeComm(P16F628A_ERASE_CODE, 0x0000, 1);
+	_delay_ms(200);
 	reset();
+	_delay_ms(200);
+
+	progMode();
+	_delay_ms(50);
+	p16f7x_writeComm(P16F628A_ERASE_DATA, 0x0000, 1);
+	_delay_ms(400);
+	reset();
+
+	oscal1 = exchange[4] | (exchange[5] << 8);
+	p16f676_restoreOsc();
+
 }
 #endif
 
@@ -1962,4 +1991,36 @@ void p16f676_restoreOsc(void)
 	reset();
 }
 #endif
+
+
+void p12f6xx_readOscall(void)
+{
+	progMode();
+	p16f7x_writeComm(P16F7X_LOAD_CONF, 0x2000, 0);
+	for(int i = 0; i < 8; i++) p16f7x_writeComm(P16F7X_INC_ADD, 0x0000, 1);
+	oscal1 = p16f7x_readComm(P16F7X_READ_DATA);
+	reset();
+
+	main_buff[0] = 0xFE;
+	main_buff[1] = 0x02;
+	main_buff[2] = 0xAB;
+	main_buff[3] = (oscal1 >> 8);
+	main_buff[4] = (oscal1 & 0xFF);
+	send_frame(main_buff, 5);
+}
+
+void p12f6xx_writeOscall(void)
+{
+	oscal1 = exchange[4] | (exchange[5] << 8);
+
+	progMode();
+	p16f7x_writeComm(P16F7X_LOAD_CONF, 0x2000, 0);
+	for(int i = 0; i < 8; i++) p16f7x_writeComm(P16F7X_INC_ADD, 0x0000, 1);
+	p16f7x_writeComm(P16F7X_LOAD_DATA, oscal1, 0);
+	p16f7x_writeComm(0x18, 0x0000, 1);
+	_delay_ms(5);
+	p16f7x_writeComm(0x0A, 0x0000, 1);
+	reset();
+}
+
 

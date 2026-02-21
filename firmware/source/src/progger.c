@@ -1,7 +1,7 @@
 /*
  * progger.c
  *
- *  Created on: 19 èþí. 2020 ã.
+ *  Created on: 19 ï¿½ï¿½ï¿½. 2020 ï¿½.
  *      Author: andre
  */
 
@@ -81,6 +81,8 @@ void deassemble_frame(void)
 							case 0x12: { p16f184xx_getId(); break; }
 							case 0x13: { p16f184xx_getId(); break; }
 							case 0x14: { p16f7x_getId(); break; }
+							case 0x15: { p16f7x_getId(); break; }
+							case 0x16: { p18fx5xx_getId(); break; }
 							default: break;
 						}
 					break;
@@ -149,6 +151,8 @@ void deassemble_frame(void)
 							case 0x12: { p16f184xx_read(); break; }
 							case 0x13: { p16f184xx_read(); break; }
 							case 0x14: { p16f7x_read(); break; }
+							case 0x15: { p16f7x_read(); break; }
+							case 0x16: { p18fxxk80_read(); break; }
 							default: break;
 						}
 					break;
@@ -186,6 +190,8 @@ void deassemble_frame(void)
 									case 0x12: { p16f184xx_erase(); break; }
 									case 0x13: { p16f184xx_erase(); break; }
 									case 0x14: { p16f7x_erase(); break; }
+									case 0x15: { p16f7x_erase(); break; }
+									case 0x16: { p18fxxk80_erase(); break; }
 									default: break;
 								}
 
@@ -230,6 +236,8 @@ void deassemble_frame(void)
 									case 0x12: { p16f184xx_readCfg(); break; }
 									case 0x13: { p16f184xx_readCfg(); break; }
 									case 0x14: { p16f7x_readCfg(); break; }
+									case 0x15: { p16f7x_readCfg(); break; }
+									case 0x16: { p18fx5xx_readCfg(); break; }
 									default: break;
 								}
 							break;
@@ -268,6 +276,8 @@ void deassemble_frame(void)
 									case 0x12: { p16f184xx_writeCfg(); break; }
 									case 0x13: { p16f184xx_writeCfg(); break; }
 									case 0x14: { p16f7x_writeCfg(); break; }
+									case 0x15: { p16f7x_writeCfg(); break; }
+									case 0x16: { p18fxxk80_writeCfg(); break; }
 									default: break;
 								}
 
@@ -316,6 +326,8 @@ void deassemble_frame(void)
 							case 0x12: { p16f7x_progMode(); main_counter = 0; break; }
 							case 0x13: { p16f7x_progMode(); break; }
 							case 0x14: { p16f7x_progMode(); break; }
+							case 0x15: { p16f7x_progMode(); break; }
+							case 0x16: { main_counter = 0; break; }
 							default: break;
 						}
 					main_buff[0] = 0xFE;
@@ -357,6 +369,8 @@ void deassemble_frame(void)
 							case 0x12: { p16f184xx_progCode(); break; }
 							case 0x13: { p18fxxq10_progCode(); break; }
 							case 0x14: { p16f7x_progCode(); break; }
+							case 0x15: { p16f7x_progCode(); break; }
+							case 0x16: { p18fxxk80_progCode(); break; }
 							default: break;
 						}
 					main_buff[0] = 0xFE;
@@ -405,6 +419,7 @@ void deassemble_frame(void)
 								p16f184xx_writeComm(0x80, 0, 0x31, 0x00, 0x00);
 								break;
 							}
+							case 0x16: { main_counter = 0; break; }
 							default: break;
 						}
 
@@ -440,6 +455,7 @@ void deassemble_frame(void)
 							case 0x11: { p16f628a_progData(); break; }
 							case 0x12: { p16f184xx_progData(); break; }
 							case 0x13: { p16f184xx_progData(); break; }
+							case 0x16: { p18fxxk80_progData(); break; }
 							default: break;
 						}
 					main_buff[0] = 0xFE;
@@ -466,6 +482,7 @@ void deassemble_frame(void)
 							case 0x0C: { p16f5x_readOscall(); break; }
 #endif
 							case 0x0E: { p12f1840_readOscall(); break; }
+							case 0x15: { p12f6xx_readOscall(); break; }
 							default: break;
 						}
 					break;
@@ -488,7 +505,7 @@ void deassemble_frame(void)
 							case 0x0B: { p12f5x_writeOscall(); break; }
 							case 0x0C: { p12f5x_writeOscall(); break; }
 #endif
-
+							case 0x15: { p12f6xx_writeOscall(); break; }
 							default: break;
 						}
 
