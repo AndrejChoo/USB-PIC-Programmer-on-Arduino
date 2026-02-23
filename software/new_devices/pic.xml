@@ -3616,12 +3616,127 @@
 	<delay>80</delay>
 	<word>FFFF</word>
   </name>
+ 
+  <name model="PIC18F65K22">
+	<id>0x5300</id>
+	<type>22</type>
+	<f_size>32768</f_size>
+	<f_psize>64</f_psize>
+	<ee_size>1024</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
+	<word>FFFF</word>
+  </name>
   
+  <name model="PIC18F65K90">
+	<id>0x5240</id>
+	<type>22</type>
+	<f_size>32768</f_size>
+	<f_psize>64</f_psize>
+	<ee_size>1024</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
+	<word>FFFF</word>
+  </name>
+ 
   <name model="PIC18F66K22">
-	<id>0x52C0</id>
+	<id>0x52D3</id>
 	<type>22</type>
 	<f_size>65536</f_size>
 	<f_psize>64</f_psize>
+	<ee_size>1024</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
+	<word>FFFF</word>
+  </name>
+  
+  <name model="PIC18F66K90">
+	<id>0x5200</id>
+	<type>22</type>
+	<f_size>65536</f_size>
+	<f_psize>64</f_psize>
+	<ee_size>1024</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
+	<word>FFFF</word>
+  </name>
+  
+  <name model="PIC18F67K22">
+	<id>0x5180</id>
+	<type>22</type>
+	<f_size>131072</f_size>
+	<f_psize>128</f_psize>
+	<ee_size>1024</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
+	<word>FFFF</word>
+  </name>
+  
+  <name model="PIC18F67K90">
+	<id>0x5100</id>
+	<type>22</type>
+	<f_size>131072</f_size>
+	<f_psize>128</f_psize>
 	<ee_size>1024</ee_size>
 	<f_start>0</f_start>
 	<ee_start>780000</ee_start>
@@ -3660,6 +3775,144 @@
 	<oscal2>none</oscal2>
 	<oscal3>none</oscal3>
 	<delay>80</delay>
+	<word>FFFF</word>
+  </name>
+  
+  <name model="PIC18F85K22">
+	<id>0x5360</id>
+	<type>22</type>
+	<f_size>32768</f_size>
+	<f_psize>64</f_psize>
+	<ee_size>1024</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
+	<word>FFFF</word>
+  </name>
+  
+  <name model="PIC18F85K90">
+	<id>0x52A0</id>
+	<type>22</type>
+	<f_size>32768</f_size>
+	<f_psize>64</f_psize>
+	<ee_size>1024</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
+	<word>FFFF</word>
+  </name>
+ 
+  <name model="PIC18F86K22">
+	<id>0x5220</id>
+	<type>22</type>
+	<f_size>65536</f_size>
+	<f_psize>64</f_psize>
+	<ee_size>1024</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
+	<word>FFFF</word>
+  </name>
+  
+  <name model="PIC18F86K90">
+	<id>0x5260</id>
+	<type>22</type>
+	<f_size>65536</f_size>
+	<f_psize>64</f_psize>
+	<ee_size>1024</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
+	<word>FFFF</word>
+  </name>
+  
+  <name model="PIC18F87K22">
+	<id>0x51C0</id>
+	<type>22</type>
+	<f_size>131072</f_size>
+	<f_psize>128</f_psize>
+	<ee_size>1024</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
+	<word>FFFF</word>
+  </name>
+  
+  <name model="PIC18F87K90">
+	<id>0x5140</id>
+	<type>22</type>
+	<f_size>131072</f_size>
+	<f_psize>128</f_psize>
+	<ee_size>1024</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
 	<word>FFFF</word>
   </name>
 	
