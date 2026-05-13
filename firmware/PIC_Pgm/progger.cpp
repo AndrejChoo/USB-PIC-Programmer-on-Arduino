@@ -83,6 +83,7 @@ void deassemble_frame(void)
 							case 0x14: { p16f7x_getId(); break; }
 							case 0x15: { p16f7x_getId(); break; }
 							case 0x16: { p18fx5xx_getId(); break; }
+							case 0x17: { p18fx5xx_getId(); break; }
 							default: break;
 						}
 					break;
@@ -153,6 +154,7 @@ void deassemble_frame(void)
 							case 0x14: { p16f7x_read(); break; }
 							case 0x15: { p16f7x_read(); break; }
 							case 0x16: { p18fxxk80_read(); break; }
+							case 0x17: { p18fx5xx_read(); break; }
 							default: break;
 						}
 					break;
@@ -192,6 +194,7 @@ void deassemble_frame(void)
 									case 0x14: { p16f7x_erase(); break; }
 									case 0x15: { p16f7x_erase(); break; }
 									case 0x16: { p18fxxk80_erase(); break; }
+									case 0x17: { p18fxx2_erase(); break; }
 									default: break;
 								}
 
@@ -238,6 +241,7 @@ void deassemble_frame(void)
 									case 0x14: { p16f7x_readCfg(); break; }
 									case 0x15: { p16f7x_readCfg(); break; }
 									case 0x16: { p18fx5xx_readCfg(); break; }
+									case 0x17: { p18fx5xx_readCfg(); break; }
 									default: break;
 								}
 							break;
@@ -278,6 +282,7 @@ void deassemble_frame(void)
 									case 0x14: { p16f7x_writeCfg(); break; }
 									case 0x15: { p16f7x_writeCfg(); break; }
 									case 0x16: { p18fxxk80_writeCfg(); break; }
+									case 0x17: { p18fxxk80_writeCfg(); break; }
 									default: break;
 								}
 
@@ -328,6 +333,7 @@ void deassemble_frame(void)
 							case 0x14: { p16f7x_progMode(); break; }
 							case 0x15: { p16f7x_progMode(); break; }
 							case 0x16: { main_counter = 0; break; }
+							case 0x17: { main_counter = 0; break; }
 							default: break;
 						}
 					main_buff[0] = 0xFE;
@@ -371,6 +377,7 @@ void deassemble_frame(void)
 							case 0x14: { p16f7x_progCode(); break; }
 							case 0x15: { p16f7x_progCode(); break; }
 							case 0x16: { p18fxxk80_progCode(); break; }
+							case 0x17: { p18fxx2_progCode(); break; }
 							default: break;
 						}
 					main_buff[0] = 0xFE;
@@ -420,6 +427,7 @@ void deassemble_frame(void)
 								break;
 							}
 							case 0x16: { main_counter = 0; break; }
+							case 0x17: { main_counter = 0; break; }
 							default: break;
 						}
 
@@ -456,6 +464,7 @@ void deassemble_frame(void)
 							case 0x12: { p16f184xx_progData(); break; }
 							case 0x13: { p16f184xx_progData(); break; }
 							case 0x16: { p18fxxk80_progData(); break; }
+							case 0x17: { p18fx5xx_progData(); break; }
 							default: break;
 						}
 					main_buff[0] = 0xFE;
