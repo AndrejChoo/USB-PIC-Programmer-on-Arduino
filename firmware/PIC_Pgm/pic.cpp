@@ -807,8 +807,16 @@ void p18fxxk80_writeCfg(void)
 		progMode();
 
 		//Access to code memory
-		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x8E7F);
-		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x9C7F);
+		if(device == 0x17)
+		{
+				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x8EA6);
+				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x8CA6);
+		}
+		else
+		{
+				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x8E7F);
+				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x9C7F);
+		}
 
 		p18fx5xx_setDP(0x30, 0x00, (i));
 		p18fx5xx_writeComm(P18FX5XX_START_PR, (exchange[i + 4] | (exchange[i + 4] << 8)));
@@ -1030,7 +1038,7 @@ void p18fx5xx_read(void)
 				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x80A6);
 				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x50A8);
 				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6EF5);
-				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x0000);
+				if(device != 0x17) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x0000); //NOP
 				p18fx5xx_readComm(P18FX5XX_SHIFT_TABL, 0x00);
 				main_buff[k + 3] = p18fx5xx_readComm(P18FX5XX_SHIFT_TABL, 0x00);
 			}
@@ -1333,6 +1341,20 @@ void p18fx5xx_erase(void)
 	reset();
 }
 
+void p18fxx2_erase(void)
+{
+	progMode();
+
+	p18fx5xx_setDP(0x3C, 0x00, 0x04);
+	p18fx5xx_writeComm(P18FX5XX_TABLE_WR, 0x0080);
+	p18fx5xx_writeNop();
+	p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x0000);
+	p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x0000);
+	_delay_ms(50);
+
+	reset();
+}
+
 #ifdef PIC18FXXK80
 void p18fxxk80_erase(void)
 {
@@ -1579,6 +1601,68 @@ void p18fx5xx_progCode(void)
 }
 #endif
 
+void p18fxx2_progCode(void)
+{
+	uint8_t h_a, m_a, l_a;
+	uint16_t  tmp_a;
+	int ff_val;
+	int i,k;
+
+	for(i = 0; i < 128; i+= f_psize)
+	{
+		ff_val = 0;
+		for(k = 0; k < f_psize; k+= 2)
+		{
+			if(exchange[i + k + 4] == 0xFF && exchange[i + k + 5] == 0xFF) ff_val += 2;
+		}
+		if(ff_val == f_psize) {main_counter += f_psize; continue;}
+
+		progMode();
+
+		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x8EA6);
+		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x8CA6);
+		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x86A6);
+
+
+		for(k = 0; k < f_psize; k+= 8)
+		{
+				tmp_a = (main_counter + k) >> 8;
+				h_a = tmp_a >> 8;
+				m_a = ((main_counter + k) >> 8) & 0xFF;
+				l_a = (main_counter + k) & 0xFF;
+
+				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x0E3C);
+				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6EF8);
+				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x0E00);
+				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6EF7);
+				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x0E06);
+				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6EF6);
+
+				p18fx5xx_writeComm(P18FX5XX_TABLE_WR, 0x0040);
+
+				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x8EA6);
+				p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x9CA6);
+
+				p18fx5xx_setDP(h_a, m_a, l_a);
+
+				p18fx5xx_writeComm(P18FX5XX_TABLE_WRPI2, exchange[i + k + 4] | (exchange[i + k + 5] << 8));
+				p18fx5xx_writeComm(P18FX5XX_TABLE_WRPI2, exchange[i + k + 6] | (exchange[i + k + 7] << 8));
+				p18fx5xx_writeComm(P18FX5XX_TABLE_WRPI2, exchange[i + k + 8] | (exchange[i + k + 9] << 8));
+				p18fx5xx_writeComm(P18FX5XX_START_PR, exchange[i + k + 10] | (exchange[i + k + 11] << 8));
+
+
+				p18fx5xx_writeNop();
+
+		}
+		_delay_us(10);
+
+		main_counter += f_psize;
+		reset();
+
+
+	}
+}
+
 #ifdef PIC18FXXK80
 void p18fxxk80_progCode(void)
 {
@@ -1741,12 +1825,19 @@ void p18fx5xx_progData(void)
 		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, (0x0E00 | exchange[i + 4]));
 		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6EA8);
 		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x84A6);
+		if(device == 0x17)
+		{
+			p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x0E55);
+			p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6EA7);
+			p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x0EAA);
+			p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6EA7);
+		}
 		p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x82A6);
 		do
 		{
 			p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x50A6);
 			p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x6EF5);
-			p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x0000);
+			if(device != 0x17) p18fx5xx_writeComm(P18FX5XX_CORE_INSTR, 0x0000);
 			a_l = p18fx5xx_readComm(P18FX5XX_SHIFT_TABL, 0x00);
 			a_h = p18fx5xx_readComm(P18FX5XX_SHIFT_TABL, 0x00);
 		}
@@ -1952,7 +2043,7 @@ void p16f676_storeOsc(void)
 	reset();
 	_delay_ms(5);
 
-	p16f628A_progMode();
+	progMode();
 	p16f7x_writeComm(P16F7X_LOAD_CONF, 0x2000, 0);
 	for(int i = 0; i < 7; i++) p16f7x_writeComm(P16F7X_INC_ADD, 0x0000, 1);
 	oscal2 = p16f7x_readComm(P16F7X_READ_DATA);
