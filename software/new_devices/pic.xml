@@ -2098,6 +2098,29 @@
 	<delay>3</delay>
 	<word>3FFF</word>
   </name> 
+  
+  <name model="PIC16F720">
+	<id>0x38C0</id>
+	<type>7</type>
+	<f_size>4096</f_size>
+	<f_psize>1</f_psize>
+	<ee_size>0</ee_size>
+	<f_start>0</f_start>
+	<ee_start>0</ee_start>
+	<ee_type>0</ee_type>
+	<conf1>002007</conf1>
+	<conf2>002008</conf2>
+	<conf3>none</conf3>
+	<conf4>none</conf4>
+	<conf5>none</conf5>
+	<conf6>none</conf6>
+	<conf7>none</conf7>
+	<oscal1>002009</oscal1>
+	<oscal2>00200A</oscal2>
+	<oscal3>none</oscal3>
+	<delay>3</delay>
+	<word>3FFF</word>
+  </name>
 
  <name model="PIC16F73">
 	<id>0x0600</id>
@@ -2857,6 +2880,29 @@
 	<delay>50</delay>
 	<word>FFFF</word>
   </name>
+  
+  <name model="PIC18F252">
+	<id>0x0400</id>
+	<type>23</type>
+	<f_size>32768</f_size>
+	<f_psize>8</f_psize>
+	<ee_size>256</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
+	<word>FFFF</word>
+  </name>
  
   <name model="PIC18F2550">
 	<id>0x1240</id>
@@ -3136,9 +3182,9 @@
  
   <name model="PIC18F458">
 	<id>0x0860</id>
-	<type>20</type>
+	<type>23</type>
 	<f_size>32768</f_size>
-	<f_psize>8</f_psize>
+	<f_psize>32</f_psize>
 	<ee_size>256</ee_size>
 	<f_start>0</f_start>
 	<ee_start>780000</ee_start>
@@ -3248,7 +3294,30 @@
 	<delay>50</delay>
 	<word>FFFF</word>
   </name>
-  
+ 
+  <name model="PIC18F452">
+	<id>0x0427</id>
+	<type>23</type>
+	<f_size>32768</f_size>
+	<f_psize>8</f_psize>
+	<ee_size>256</ee_size>
+	<f_start>0</f_start>
+	<ee_start>780000</ee_start>
+	<ee_type>1</ee_type>
+	<conf1>180000</conf1>
+	<conf2>180001</conf2>
+	<conf3>180002</conf3>
+	<conf4>180003</conf4>
+	<conf5>180004</conf5>
+	<conf6>180005</conf6>
+	<conf7>180006</conf7>
+	<oscal1>none</oscal1>
+	<oscal2>none</oscal2>
+	<oscal3>none</oscal3>
+	<delay>50</delay>
+	<word>FFFF</word>
+  </name>
+ 
 <name model="PIC18F4520">
 	<id>0x1080</id>
 	<type>3</type>
