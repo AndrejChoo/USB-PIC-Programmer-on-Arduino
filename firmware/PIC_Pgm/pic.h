@@ -150,6 +150,10 @@ void p18fxxq10_progCode(void);
 void p18fxxjxx_progMode(void);
 void p18fxxjxx_reset(void);
 
+//PIC18Fxx2/xx8
+void p18fxx2_erase(void);
+void p18fxx2_progCode(void);
+
 #endif /* INC_PIC_H_ */
 
 
